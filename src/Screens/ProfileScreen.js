@@ -1,12 +1,11 @@
 import React from 'react';
 import {View, StyleSheet, Text, SafeAreaView} from 'react-native';
+import BookmarkedList from '../Components/BookmarkedList';
 
 const ProfileScreen = () => {
   return (
     <SafeAreaView>
-      <View>
-        <Text>Profile</Text>
-      </View>
+      <View></View>
     </SafeAreaView>
   );
 };

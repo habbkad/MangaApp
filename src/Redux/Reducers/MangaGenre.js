@@ -8,13 +8,31 @@ const initialState = {
 const ManagaGenre = (state = initialState, action) => {
   switch (action.type) {
     case 'ACTION':
-      return {...state, actionManga: action.payload};
+      const actionManga = [...action.payload, ...state.actionManga];
+      const actArr = actionManga.filter(
+        (v, i, a) => a.findIndex(v2 => v2.id === v.id) === i,
+      );
+
+      return {...state, actionManga: [...actArr]};
     case 'COMEDY':
-      return {...state, comedy: action.payload};
+      const comedyManga = [...action.payload, ...state.comedy];
+      const comArr = comedyManga.filter(
+        (v, i, a) => a.findIndex(v2 => v2.id === v.id) === i,
+      );
+
+      return {...state, comedy: [...comArr]};
     case 'ROMANCE':
-      return {...state, romance: action.payload};
+      const romanceManga = [...action.payload, ...state.romance];
+      const romArr = romanceManga.filter(
+        (v, i, a) => a.findIndex(v2 => v2.id === v.id) === i,
+      );
+      return {...state, romance: [...romArr]};
     case 'ISEKAI':
-      return {...state, isekai: action.payload};
+      const isekaiManga = [...action.payload, ...state.isekai];
+      const isArr = isekaiManga.filter(
+        (v, i, a) => a.findIndex(v2 => v2.id === v.id) === i,
+      );
+      return {...state, isekai: [...isArr]};
     default:
       return state;
   }

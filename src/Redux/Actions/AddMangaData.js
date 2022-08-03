@@ -37,3 +37,17 @@ export const addIsekaiGenre = manga => {
     payload: manga,
   };
 };
+
+export const addBookmark = bookmark => {
+  return {
+    type: 'BOOK_MARK',
+    payload: bookmark,
+  };
+};
+
+export const searchResults = results => {
+  return {
+    type: 'SEARCHED_MANGA',
+    payload: results,
+  };
+};

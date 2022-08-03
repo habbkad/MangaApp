@@ -5,17 +5,17 @@ import MangaSecList from './MangaSecList';
 import MangaView from './MangaView';
 import light from '../TextStyle/Text';
 
-const HomeScrollView = () => {
+const HomeScrollView = props => {
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
         <View style={styles.carousel}>
           <Carousel />
-          <MangaSecList />
+          <MangaSecList navigation={props.navigation} />
           <Text style={light.text}>knk</Text>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -11,14 +11,29 @@ import {
 } from '../Redux/Actions/AddMangaData';
 import axios from 'axios';
 import {GetList} from '../MangaAPI/GetList';
+import moment from 'moment';
+let date =
+  moment().subtract(12, 'hours').toISOString().slice(0, -11) + ':00:00';
 
 export default () => {
   const dispatch = useDispatch();
 
+  console.log(date);
+
   const getManga = async () => {
     try {
       const manga = await GetFunc(
-        'https://api.mangadex.org/manga?limit=100&includedTagsMode=AND&excludedTagsMode=OR&contentRating%5B%5D=safe&contentRating%5B%5D=suggestive&contentRating%5B%5D=erotica&order%5BlatestUploadedChapter%5D=desc',
+        `https://api.mangadex.org/manga?order%5BlatestUploadedChapter%5D=desc`,
+        {
+          limit: '100',
+          updatedAtSince: date,
+          includedTagsMode: 'AND',
+          includedTagsMode: 'OR',
+          contentRating: ['safe', 'suggestive', 'erotica'],
+          availableTranslatedLanguage: ['en'],
+          hasAvailableChapters: 'true',
+          excludedOriginalLanguage: ['fr', 'ar', 'es', 'ko', 'id', 'ru'],
+        },
       );
       const {data} = manga;
 
@@ -43,7 +58,7 @@ export default () => {
         const newData = {...item, image: image};
         mangaList = [...mangaList, newData];
       }
-      console.log(mangaList);
+      // console.log(mangaList);
 
       const action = mangaList.filter(manga => {
         const {tags} = manga.attributes;

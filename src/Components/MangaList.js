@@ -1,23 +1,22 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Image, Text, TouchableOpacity} from 'react-native';
 import light from '../TextStyle/Text';
 import {useNavigation} from '@react-navigation/native';
 
-const MangaView = props => {
+const MangaList = props => {
   const {attributes} = props.data;
   const {en} = attributes.title;
   const {image} = props.data;
   const {status} = attributes;
 
   const navigation = useNavigation();
-
   return (
     <View style={styles.container}>
       <View style={styles.details}>
         <TouchableOpacity
           onPress={() => navigation.push('Details', {manga: props.data})}>
           <Image
-            style={{height: 170, width: 110, borderRadius: 10}}
+            style={{height: 170, width: 115, borderRadius: 10}}
             source={{uri: image}}
           />
           <View style={styles.info}>
@@ -37,10 +36,10 @@ const MangaView = props => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 3,
+    margin: 5,
   },
   details: {
-    // backgroundColor: '#121212',
+    //backgroundColor: '#121212',
     borderRadius: 5,
   },
   info: {
@@ -53,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MangaView;
+export default MangaList;

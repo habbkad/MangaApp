@@ -7,19 +7,19 @@ import HomeScrollView from '../Components/HomeScrollView';
 
 const HomeScreen = props => {
   const {getManga} = useManga();
-
+  //console.log(props);
   const {isekai} = useSelector(state => state.MangaGenre);
-  console.log(isekai);
+  //  console.log(isekai);
   const {mangDeds} = useSelector(state => state.MangaData);
-  console.log(mangDeds);
+  //console.log(mangDeds);
   const {manga} = useSelector(state => state.MangaData);
-  console.log(manga);
+  //console.log(manga);
 
   useEffect(() => {
     getManga();
   }, []);
 
-  return <HomeScrollView />;
+  return <HomeScrollView navigation={props.navigation} />;
 };
 
 const styles = StyleSheet.create({
