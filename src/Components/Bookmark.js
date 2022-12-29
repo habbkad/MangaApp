@@ -9,7 +9,7 @@ const Bookmark = props => {
   console.log(description);
   return (
     <View>
-      <Text style={light.text}>kjbdfjkbd</Text>
+      <Text style={light.text}>{en}</Text>
     </View>
   );
 };
