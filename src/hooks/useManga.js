@@ -18,8 +18,6 @@ let date =
 export default () => {
   const dispatch = useDispatch();
 
-  console.log(date);
-
   const getManga = async () => {
     try {
       const manga = await GetFunc(
@@ -35,7 +33,9 @@ export default () => {
           excludedOriginalLanguage: ['fr', 'ar', 'es', 'ko', 'id', 'ru'],
         },
       );
+
       const {data} = manga;
+      // console.log('###########' + manga);
 
       let mangaList = [];
 
@@ -58,7 +58,6 @@ export default () => {
         const newData = {...item, image: image};
         mangaList = [...mangaList, newData];
       }
-      // console.log(mangaList);
 
       const action = mangaList.filter(manga => {
         const {tags} = manga.attributes;
@@ -106,7 +105,7 @@ export default () => {
 
       return data;
     } catch (error) {
-      console.log(error);
+      console.log('******', error);
     }
   };
 

@@ -3,9 +3,9 @@ import axios from 'axios';
 
 export const GetFunc = async (url, params) => {
   try {
-    const {data} = await axios.get(url, {params});
+    const data = await axios.get(url, {params});
 
-    return data;
+    return data.data;
   } catch (e) {
     console.log(e);
   }

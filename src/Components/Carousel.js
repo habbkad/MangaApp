@@ -13,7 +13,7 @@ const Carousel = () => {
     manga.comedy[Math.floor(Math.random())].image,
     manga.isekai[1].image,
   ]);
-  console.log(manga);
+  //console.log(manga);
   if (!manga) {
     return (
       <View>

@@ -5,12 +5,15 @@ import {ChapterIds} from '../hooks/UseChapters';
 import ChaptersList from './ChaptersList';
 import {Icon} from 'react-native-elements';
 import TopNav from '../Navigation/TopNav';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {addBookmark} from '../Redux/Actions/AddMangaData';
+import {addBookmark, removeBookmark} from '../Redux/Actions/AddMangaData';
 
 const EachMangaDetails = props => {
+  const selected = useSelector(state => state.BookmarkReducer.bookmarked);
   const manga = props.manga;
+  // console.log(selected);
+
   const {attributes} = props.manga;
   const {description} = attributes;
   const {en} = attributes.title;
@@ -19,12 +22,23 @@ const EachMangaDetails = props => {
   const [iconColor, setIconColor] = useState('white');
   const dispatch = useDispatch();
 
-  const bookmark = e => {
-    e.preventDefault();
-    iconColor == 'white' ? setIconColor('#037bfc') : setIconColor('white');
-    console.log(manga);
+  useEffect(() => {
+    selected.map(item => {
+      console.log(item.id);
+      if (manga.id == item.id) {
+        setIconColor('#037bfc');
+      }
+    });
+  }, []);
 
-    dispatch(addBookmark(manga));
+  const bookmark = () => {
+    if (iconColor == 'white') {
+      setIconColor('#037bfc');
+      dispatch(addBookmark(manga));
+    } else {
+      dispatch(removeBookmark(manga));
+      setIconColor('white');
+    }
   };
 
   //console.log(manga.id);

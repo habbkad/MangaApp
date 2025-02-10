@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, FlatList, Image} from 'react-native';
 import {GetChapImages} from '../MangaAPI/GetChapImages';
 import {Dimensions} from 'react-native';
+import ImageLoad from 'react-native-image-placeholder';
 
 const ChapterImages = ({route}) => {
   const [chapImages, setChapImages] = useState([]);
@@ -29,14 +30,29 @@ const ChapterImages = ({route}) => {
         style={styles.chapImages}
         data={chapImages}
         renderItem={({item}) => (
-          <Image
+          <ImageLoad
             style={{
               height: 300 * ratio,
               width: Dimensions.get('window').width,
               marginTop: 3,
             }}
-            source={{uri: `https://uploads.mangadex.org/data/${hash}/${item}`}}
+            placeholderSource={{
+              uri: 'https://media.tenor.com/AKHj5e7v4pcAAAAj/cute.gif',
+            }}
+            loadingStyle={{}}
+            source={{
+              uri: `https://uploads.mangadex.org/data/${hash}/${item}`,
+            }}
           />
+          // <Image
+          //   style={{
+          //     height: 300 * ratio,
+          //     width: Dimensions.get('window').width,
+          //     marginTop: 3,
+          //   }}
+          //   source={{uri: `https://uploads.mangadex.org/data/${hash}/${item}`}}
+
+          // />
         )}
       />
       <View style={styles.controls}></View>

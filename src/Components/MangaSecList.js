@@ -16,11 +16,12 @@ import light from '../TextStyle/Text';
 import {useNavigation} from '@react-navigation/native';
 
 const MangaSecList = () => {
+  const {manga} = useSelector(state => state.MangaData);
   const {isekai} = useSelector(state => state.MangaGenre);
   const {actionManga} = useSelector(state => state.MangaGenre);
   const {comedy} = useSelector(state => state.MangaGenre);
   const {romance} = useSelector(state => state.MangaGenre);
-  console.log(comedy);
+  //console.log(manga.manga);
   const DATA = [
     // {
     //   title: 'Acttion',
@@ -114,6 +115,23 @@ const MangaSecList = () => {
         <FlatList
           data={isekai.slice(0, 10)}
           renderItem={({item}) => <MangaView data={item} genre={'Isekai'} />}
+          horizontal
+        />
+      </View>
+
+      <View style={{flex: 2.5}}>
+        <View style={styles.mangaTitle}>
+          <Text style={light.textTitle}>All manga</Text>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.push('MoreManga', {manga: manga, genre: 'All manga'})
+            }>
+            <Text style={[light.text, {marginTop: 5}]}>See more...</Text>
+          </TouchableOpacity>
+        </View>
+        <FlatList
+          data={manga.slice(0, 10)}
+          renderItem={({item}) => <MangaView data={item} genre={'All manga'} />}
           horizontal
         />
       </View>

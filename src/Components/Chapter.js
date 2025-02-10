@@ -35,8 +35,9 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     paddingLeft: 5,
+    borderRadius: 20,
     paddingRight: 5,
-    borderColor: 'white',
+    backgroundColor: '#191919',
     justifyContent: 'space-between',
   },
   icon: {

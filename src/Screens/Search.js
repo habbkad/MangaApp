@@ -37,6 +37,11 @@ const Search = () => {
         <TextInput
           style={styles.searchInput}
           value={searchTitle}
+          returnKeyType="search"
+          onSubmitEditing={async () => {
+            const result = await search(searchTitle);
+            dispatch(searchResults(result));
+          }}
           onChangeText={text => {
             setSearchTitle(text);
           }}

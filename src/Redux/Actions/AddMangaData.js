@@ -44,6 +44,12 @@ export const addBookmark = bookmark => {
     payload: bookmark,
   };
 };
+export const removeBookmark = bookmark => {
+  return {
+    type: 'REMOVE_BOOK_MARK',
+    payload: bookmark,
+  };
+};
 
 export const searchResults = results => {
   return {
